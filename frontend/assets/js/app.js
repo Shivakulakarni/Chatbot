@@ -1,6 +1,6 @@
 // Configuration
-const API_BASE_URL = 'http://localhost:5000/api';
-const SOCKET_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://chatbot-backend-XXXX.onrender.com/api';  // REPLACE XXXX with your Render URL
+const SOCKET_URL = 'https://chatbot-backend-XXXX.onrender.com';  // REPLACE XXXX with your Render URL
 
 // Global State
 let socket = null;
