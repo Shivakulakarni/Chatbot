@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Welfare Agent - Voice-First AI Assistant v3.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css?v=3.0">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1><i class="fas fa-hands-helping"></i>Welfare Assistant</h1>
+                <p class="subtitle">Voice-First AI Assistant for Government Welfare Schemes</p>
+                <div class="language-selector">
+                    <label for="language"><i class="fas fa-language"></i></label>
+                    <select id="language">
+                        <option value="mr-IN">मराठी (Marathi)</option>
+                        <option value="hi-IN">हिंदी (Hindi)</option>
+                        <option value="te-IN">తెలుగు (Telugu)</option>
+                        <option value="ta-IN">தமிழ் (Tamil)</option>
+                        <option value="bn-IN">বাংলা (Bengali)</option>
+                        <option value="or-IN">ଓଡ଼ିଆ (Odia)</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Authentication Section -->
+        <section id="authSection" class="auth-section">
+            <div class="auth-card">
+                <h2 id="authTitle">Create Account</h2>
+                <p style="text-align: center; color: #10b981; font-size: 0.9em; font-weight: 600; margin-bottom: 20px; background: rgba(16, 185, 129, 0.1); padding: 8px; border-radius: 8px;">✅ Version 3.0 - All 4 Fields Active</p>
+                <form id="authForm">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="nameInput" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone" placeholder="📱 Phone Number (10 digits - Required)" required pattern="[6-9][0-9]{9}">
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password (min 6 characters)" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" id="authButton" class="primary-btn">
+                            <i class="fas fa-user-plus"></i> Register
+                        </button>
+                        <button type="button" id="toggleAuth" class="secondary-btn">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </div>
+                </form>
+                <div id="authMessage" class="auth-message"></div>
+            </div>
+        </section>
+
+        <!-- Main Application Section -->
+        <section id="appSection" class="app-section" style="display: none;">
+            <div class="main-panel">
+                <!-- Voice Interface -->
+                <div class="voice-interface">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="user-details">
+                            <h3 id="userName">User</h3>
+                            <span id="userStatus" class="status-badge">Online</span>
+                        </div>
+                        <button id="logoutBtn" class="icon-btn" title="Logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="conversation-container">
+                        <div id="conversationDisplay" class="conversation-display">
+                            <div class="welcome-message">
+                                <i class="fas fa-robot"></i>
+                                <h3>नमस्कार! Welcome to Welfare Agent</h3>
+                                <p>I'm here to help you discover and apply for government welfare schemes in your native language.</p>
+                                <div class="features-grid">
+                                    <div class="feature-item">
+                                        <i class="fas fa-microphone"></i>
+                                        <span>Voice Input</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-brain"></i>
+                                        <span>AI Assistant</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Eligibility Check</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>Auto Apply</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="voice-controls">
+                        <button id="recordBtn" class="record-btn">
+                            <span class="icon"><i class="fas fa-microphone"></i></span>
+                            <span class="text">Press to Speak</span>
+                        </button>
+                        <div id="recordingIndicator" class="recording-indicator" style="display: none;">
+                            <span class="pulse"></span>
+                            <span>Recording... Speak now</span>
+                            <span id="recordingTime">0:00</span>
+                        </div>
+                    </div>
+
+                    <div class="text-input">
+                        <input type="text" id="textInput" placeholder="या टाका आपला प्रश्न येथे... / Type your question here...">
+                        <button id="sendBtn" class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Panels -->
+            <div class="side-panels">
+                <!-- Memory Panel -->
+                <div class="panel memory-panel">
+                    <h3><i class="fas fa-memory"></i> Conversation Memory</h3>
+                    <div id="memoryDisplay" class="memory-content">
+                        <div class="memory-item">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Your conversation context will appear here</p>
+                        </div>
+                    </div>
+                    <button id="clearMemoryBtn" class="panel-btn">
+                        <i class="fas fa-trash"></i> Clear Memory
+                    </button>
+                </div>
+
+                <!-- Schemes Panel -->
+                <div class="panel schemes-panel">
+                    <h3><i class="fas fa-list-check"></i> Eligible Schemes</h3>
+                    <div id="schemesDisplay" class="schemes-content">
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <p>Ask me to check your eligibility for welfare schemes</p>
+                        </div>
+                    </div>
+                    <button id="viewAllSchemes" class="panel-btn">
+                        <i class="fas fa-eye"></i> View All Schemes
+                    </button>
+                </div>
+
+                <!-- Applications Panel -->
+                <div class="panel applications-panel">
+                    <h3><i class="fas fa-file-contract"></i> My Applications</h3>
+                    <div id="applicationsDisplay" class="applications-content">
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <p>No applications yet</p>
+                        </div>
+                    </div>
+                    <button id="refreshApps" class="panel-btn">
+                        <i class="fas fa-sync"></i> Refresh
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Welfare Agent - Voice-First AI for Government Services</p>
+            <p class="tech-stack">
+                <span><i class="fas fa-microphone"></i> Voice AI</span>
+                <span><i class="fas fa-brain"></i> GPT-4 Turbo</span>
+                <span><i class="fas fa-server"></i> Node.js</span>
+                <span><i class="fas fa-database"></i> MongoDB</span>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="assets/js/app.js?v=3.0"></script>
+    <script>
+        // Debug: Log all form fields on page load
+        window.addEventListener('load', () => {
+            console.log('=== FORM FIELDS LOADED ===');
+            console.log('Name field:', document.getElementById('nameInput'));
+            console.log('Email field:', document.getElementById('email'));
+            console.log('Phone field:', document.getElementById('phone'));
+            console.log('Password field:', document.getElementById('password'));
+            console.log('Total input fields:', document.querySelectorAll('input').length);
+        });
+    </script>
+</body>
+</html>

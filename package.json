@@ -1,0 +1,48 @@
+{
+  "name": "voice-welfare-agent",
+  "version": "1.0.0",
+  "description": "Voice-first, agentic AI system for welfare scheme identification and application in Marathi",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "dev": "nodemon src/index.js",
+    "demo": "node src/demo.js",
+    "test:evaluation": "node tests/evaluation.js",
+    "server": "node backend/server.js",
+    "server:dev": "nodemon backend/server.js",
+    "client": "cd frontend && npm start",
+    "dev:full": "concurrently \"npm run server:dev\" \"npm run client\""
+  },
+  "keywords": [
+    "voice-agent",
+    "welfare-schemes",
+    "marathi",
+    "agentic-ai",
+    "tts",
+    "stt"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "openai": "^4.24.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.6.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "@types/node": "^20.8.1",
+    "concurrently": "^8.2.2"
+  }
+}
